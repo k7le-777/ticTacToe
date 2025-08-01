@@ -1,0 +1,1 @@
+-   First build logic gam efirst before UI and DOM manipulation
