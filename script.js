@@ -30,8 +30,14 @@ const createPlayer = (name, marker) => {
 const gameController = (() => {
     const player1 = createPlayer("Player 1", "X");
     const player2 = createPlayer("Player 2", "O");
-    let currentPlayer = player1;
-    let gameOver = false;
+    
+    function startGame() {
+        gameBrd.resetBoard();
+        gameOver = false;
+        currentPlayer = player1;
+        messageDisplay.updateMessage(`${currentPlayer.getName()}'s turn`);
+        displayController.render();
+    }
 
     function checkWin() {
         const board = gameBrd.getBoard();
@@ -58,32 +64,79 @@ const gameController = (() => {
 
     function playMove(index) {
         if (gameOver) {
-            return "Game is over, cannot play.";
+            messageDisplay.updateMessage("Game is over, please restart.");
+            return "Game is over, please restart.";
         }
-        if (index < 0 || index > 9) {  
-            return "Invalid index, choose a number between 0 and 9.";
+        if (index < 0 || index > 8) { 
+            messageDisplay.updateMessage("Invalid index, choose a number between 0 and 8."); 
+            return "Invalid index, choose a number between 0 and 8.";
         }
         const success = gameBrd.setMark(index, currentPlayer.getMarker());
         if (!success) {
+            messageDisplay.updateMessage("Cell already taken, choose another.");
             return "Cell already taken, choose another.";
         }
 
         if (checkWin()) {
             gameOver = true;
+            messageDisplay.updateMessage(`${currentPlayer.getName()} wins!`);
             return `${currentPlayer.getName()} wins!`;
 
         }
 
         if (checkTie()) {
             gameOver = true;
+            messageDisplay.updateMessage("It's a tie!");
             return "It's a tie!";
         }
         switchTurn();
+        messageDisplay.updateMessage(`${currentPlayer.getName()}'s turn`);
         return`${currentPlayer.getName()}'s turn`;
     }
     return {
         playMove,
+        startGame
     }
 
 })();
+
+const gameControls = (() => {
+    const resetButton = document.getElementById('reset');
+    resetButton.addEventListener('click', gameController.startGame)
+})();
+
+const messageDisplay = (() => {
+    const statusDiv = document.getElementById('status');
+    function updateMessage(message) {
+        statusDiv.textContent = message;
+    }
+    return {
+        updateMessage,
+    };
+})();
+
+const displayController = (() => {
+    const cells = document.querySelectorAll('.cell');
+
+    cells.forEach(cell => {
+        cell.addEventListener('click', () => {
+            const index = cell.dataset.index;
+            gameController.playMove(parseInt(index));
+            render();
+        });
+    });
+    function render() {
+        const board = gameBrd.getBoard();
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell, i) => {
+            cell.textContent = board[i];
+        });    
+    }
+    return {
+        render
+    };
+})();
+
+gameController.startGame();
+
 

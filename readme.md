@@ -1,1 +1,3 @@
--   First build logic gam efirst before UI and DOM manipulation
+-   First build logic game first before UI and DOM manipulation
+- finished gameController,messageDisplay and displayController working modularly to seperate and not couple functions with their individual task
+- considering scope
