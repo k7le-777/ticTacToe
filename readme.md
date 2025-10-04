@@ -153,10 +153,10 @@ That's it! No build process, no dependencies—just pure vanilla JavaScript.
 
 ## 🎨 Screenshots
 
-![Tic Tac Toe Gameplay](screenshot-game.png)
+![Tic Tac Toe Gameplay](/1.png)
 *Clean, intuitive interface with clear player indication*
 
-![Win State](screenshot-win.png)
+![Win State](/2.png)
 *Visual feedback when a player wins*
 
 ---
@@ -210,7 +210,7 @@ This project represents a pivotal moment in my coding journey—the moment I sto
 
 Want to see more of my work or discuss web development?
 
-- 💼 [LinkedIn](your-linkedin-url)
+- 💼 [LinkedIn] https://www.linkedin.com/in/ryan-burns-rb/
 - 🌐 [Portfolio](https://k7le-777.github.io/ryan-burns-portfolio-DEMO-/)
 - 📧 [Email](mailto:kyleburns7.kb@yahoo.com)
 - 💻 [GitHub](https://github.com/k7le-777)
@@ -223,7 +223,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-<div align="center">
 
 **Part of my self-taught developer journey**
 
@@ -232,5 +231,3 @@ This project is open source and available under the [MIT License](LICENSE).
 *From asking "How is a page fundamentally made?" to building solutions that matter.*
 
 ⭐ Star this repo if you found it helpful!
-
-</div>
